@@ -1,0 +1,165 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  APPLICANT
+  RECRUITER
+  ADMIN
+}
+
+model User {
+  id             String          @id @default(cuid())
+  name           String?
+  email          String          @unique
+  emailVerified  DateTime?
+  image          String?
+  password       String?
+  role           Role            @default(USER)
+  accounts       Account[]
+  sessions       Session[]
+  Authenticator  Authenticator[]
+  applicant      Applicant?
+  recruiterFor   Company[]       @relation("Recruiters")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([provider, providerAccountId])
+}
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+}
+
+model Authenticator {
+  credentialID         String  @unique
+  userId               String
+  providerAccountId    String
+  credentialPublicKey  String
+  counter              Int
+  credentialDeviceType String
+  credentialBackedUp   Boolean
+  transports           String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, credentialID])
+}
+
+model Company {
+  id         Int           @id @default(autoincrement())
+  name       String
+  industry   String?
+  location   String?
+  website    String?
+  createdAt  DateTime      @default(now())
+  jobs       JobListing[]
+  recruiters User[]        @relation("Recruiters")
+}
+
+model JobListing {
+  id            Int           @id @default(autoincrement())
+  title         String
+  description   String
+  location      String?
+  salaryMin     Float?
+  salaryMax     Float?
+  jobType       String?
+  postedAt      DateTime      @default(now())
+  isActive      Boolean       @default(true)
+  companyId     Int
+  company       Company       @relation(fields: [companyId], references: [id])
+  applications  Application[]
+  requiredSkills JobSkill[]
+}
+
+model Applicant {
+  id           Int               @id @default(autoincrement())
+  userId       String            @unique
+  fullName     String
+  email        String            @unique
+  phoneNumber  String?
+  resumeUrl    String?
+  createdAt    DateTime          @default(now())
+
+  user         User              @relation(fields: [userId], references: [id])
+  applications Application[]
+  skills       ApplicantSkill[]
+}
+
+model Application {
+  id          Int         @id @default(autoincrement())
+  applicantId Int
+  jobId       Int
+  appliedAt   DateTime    @default(now())
+  status      String      @default("submitted") // submitted, shortlisted, rejected, hired
+
+  applicant   Applicant   @relation(fields: [applicantId], references: [id])
+  job         JobListing  @relation(fields: [jobId], references: [id])
+}
+
+model Skill {
+  id              Int               @id @default(autoincrement())
+  name            String            @unique
+  applicantSkills ApplicantSkill[]
+  jobSkills       JobSkill[]
+}
+
+model ApplicantSkill {
+  applicantId Int
+  skillId     Int
+
+  applicant Applicant @relation(fields: [applicantId], references: [id])
+  skill     Skill     @relation(fields: [skillId], references: [id])
+
+  @@id([applicantId, skillId])
+}
+
+model JobSkill {
+  jobId   Int
+  skillId Int
+
+  job   JobListing @relation(fields: [jobId], references: [id])
+  skill Skill      @relation(fields: [skillId], references: [id])
+
+  @@id([jobId, skillId])
+}
