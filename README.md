@@ -32,5 +32,5 @@ A modern and scalable job board application built with **Next.js**, powered by *
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/jobboard-app.git
-cd jobboard-app
+https://github.com/CactusHoodie24/Jobboardapp.git
+cd Jobboardapp
