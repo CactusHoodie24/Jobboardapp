@@ -1,4 +1,6 @@
 import { signIn } from "@/auth"
+import { Input } from "./ui/input"
+import { Button } from "./ui/button"
  
 export function SignInTag() {
   return (
@@ -12,19 +14,19 @@ export function SignInTag() {
         await signIn("credentials", {
           email,
           password,
-          redirectTo: "/jobs" // optional: redirect after login
+          redirectTo: "/jobs", // optional: redirect after login
         })
       }}
     >
       <label>
         Email
-        <input name="email" type="email" />
+        <Input name="email" type="email" />
       </label>
       <label>
         Password
-        <input name="password" type="password" />
+        <Input name="password" type="password" />
       </label>
-      <button>Sign In</button>
+      <Button className="mt-2.5">Sign In</Button>
     </form>
   )
 }
