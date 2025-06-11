@@ -3,6 +3,8 @@
   import { prisma } from "@/prisma"
   import Google from "next-auth/providers/google"
   import Credentials from "next-auth/providers/credentials"
+import { loginSchema } from "./lib/zod"
+import { ZodError } from "zod"
 
   
   export const { handlers, auth, signIn, signOut } = NextAuth({
@@ -10,31 +12,31 @@
     providers: [Google,
       Credentials({
       credentials: {
-        email: {},
-        password: {}
+        email: { label: "Email", type: "email" },
+    password: { label: "Password", type: "password" }
       } ,
       authorize: async (credentials) => {
-        const email = credentials?.email?.toString().trim()
-    const password = credentials?.password?.toString()
+    
+   try {
+    const { email, password } = await loginSchema.parseAsync(credentials)
 
-    console.log("Email:", email)
-    console.log("Password:", password)
+    const user = await prisma.user.findUnique({
+      where: { email },
+    })
 
-    if (!email || !password) {
-      console.log("Missing credentials")
-      return null
+    if (!user || user.password !== password) {
+      throw new Error("Invalid email or password")
     }
-        const user = await prisma.user.findUnique({
-  where: { email: credentials?.email as string },
-});
-        
-        if(user?.password === credentials?.password){ 
-          console.log("User from DB:", user?.role);
-          return user;
-        }else{
-          console.log('user was not found');
-          return null
-        }
+
+    return user
+  } catch (err) {
+    if (err instanceof ZodError) {
+       const firstIssue = err.issues[0]?.message || "Invalid input"
+      throw new Error(firstIssue)
+    }
+
+    throw new Error("Login failed")
+  } 
       }
       })
     ],

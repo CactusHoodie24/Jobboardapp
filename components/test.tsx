@@ -8,7 +8,7 @@ import { Button } from "./ui/button"
 export function SignInTag() {  
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
+  const [error, setError] = useState('')
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
@@ -19,9 +19,10 @@ export function SignInTag() {
     })
 
     if (result?.ok) {
-      window.location.reload()
-      window.location.href = "/jobs" // ✅ optional redirect
+       console.error("Login error:", result.error)
+   
     } else {
+     
       alert("Login failed")
     }
   }
@@ -35,6 +36,7 @@ export function SignInTag() {
       <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
 
       <Button className="mt-2.5" type="submit">Sign In</Button>
+      {error && <h2>{error}</h2>}
     </form>
   )
 }
