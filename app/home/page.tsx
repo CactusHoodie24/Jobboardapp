@@ -3,6 +3,7 @@ import React from 'react'
 import Jobs from '../jobs/page';
 import CarouselSpacing from '@/components/ui/cardlook';
 
+
 async function getJobs() {
   return  await prisma.jobListing.findMany({
   include: {

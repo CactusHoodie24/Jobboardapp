@@ -25,12 +25,11 @@
       return null
     }
         const user = await prisma.user.findUnique({
-          where: {
-            email: credentials?.email as string
-          }
-        })
-        console.log("User found:", user) // 👈 Add this
+  where: { email: credentials?.email as string },
+});
+        
         if(user?.password === credentials?.password){ 
+          console.log("User from DB:", user?.role);
           return user;
         }else{
           console.log('user was not found');
@@ -46,15 +45,19 @@
      async jwt({ token, user }) {
     if (user) {
       // Only store the role string in the token
-      token.role = user.role || user.role || 'UNKNOWN';
+      console.log("JWT user role:", user.role);
+
+      token.role = user.role;
     }
     return token;
   },
   async session({ session, token }) {
     if (token && session.user) {
       // Only set the role string on the session
+      console.log("Session token role:", token.role);
       session.user.role = token.role as string;
     }
+    console.log("Session from auth():", session);
     return session;
   }
   },

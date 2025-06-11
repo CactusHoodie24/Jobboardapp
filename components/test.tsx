@@ -1,32 +1,40 @@
-import { signIn } from "@/auth"
+'use client'
+
+import { signIn} from "next-auth/react"
+import { useState } from "react"
 import { Input } from "./ui/input"
 import { Button } from "./ui/button"
- 
-export function SignInTag() {
+
+export function SignInTag() {  
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    const result = await signIn("credentials", {
+      email,
+      password,
+      redirect: false // don't redirect automatically
+    })
+
+    if (result?.ok) {
+      window.location.reload()
+      window.location.href = "/jobs" // ✅ optional redirect
+    } else {
+      alert("Login failed")
+    }
+  }
+
   return (
-    <form
-      action={async (formData) => {
-        "use server"
+    <form onSubmit={handleSubmit}>
+      <label>Email</label>
+      <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
 
-        const email = formData.get("email")?.toString()
-        const password = formData.get("password")?.toString()
+      <label>Password</label>
+      <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
 
-        await signIn("credentials", {
-          email,
-          password,
-          redirectTo: "/jobs", // optional: redirect after login
-        })
-      }}
-    >
-      <label>
-        Email
-        <Input name="email" type="email" />
-      </label>
-      <label>
-        Password
-        <Input name="password" type="password" />
-      </label>
-      <Button className="mt-2.5">Sign In</Button>
+      <Button className="mt-2.5" type="submit">Sign In</Button>
     </form>
   )
 }

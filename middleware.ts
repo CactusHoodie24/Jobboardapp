@@ -13,14 +13,24 @@ export async function middleware(request: NextRequest) {
   const userRole = session.user.role;
   const pathname = request.nextUrl.pathname;
 
-  // If accessing /dashboard/seeker/apply, only allow APPLICANT
-  if (pathname.startsWith("/dashboard/seeker/apply")) {
+  console.log("User role in middleware:", userRole);
+
+  // ✅ Allow APPLICANT to access their routes
+  if (
+    pathname.startsWith("/dashboard/seeker/applications") ||
+    pathname.startsWith("/dashboard/seeker/applyForJob") ||
+    pathname.startsWith("/dashboard/seeker/registerApplicant") ||
+     pathname.startsWith("/dashboard/seeker/profile")
+  ) {
     if (userRole !== "APPLICANT") {
       return NextResponse.redirect(new URL("/unauthorized", request.url));
     }
+
+    return NextResponse.next(); // ✅ Early return
   }
-  // For all other /dashboard routes, only allow ADMIN
-  else if (pathname.startsWith("/dashboard") && userRole !== "ADMIN") {
+
+  // ✅ Only ADMIN can access other /dashboard routes
+  if (pathname.startsWith("/dashboard") && userRole !== "ADMIN") {
     return NextResponse.redirect(new URL("/unauthorized", request.url));
   }
 
