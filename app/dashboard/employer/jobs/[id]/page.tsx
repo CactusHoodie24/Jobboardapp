@@ -3,9 +3,16 @@ import { Input } from "@/components/ui/input";
 import { prisma } from "@/prisma";
 import { notFound } from 'next/navigation'
 import JobDetailsForm from "./JobDetailsForm";
+import type { PageProps } from "@/types/page"
 
-export default async function JobDetails({params}: {params: {id: string}}) {
-     const jobId = Number(params.id)
+interface JobPageParams {
+  id: string
+}
+
+export default async function JobDetail({ params }: PageProps<JobPageParams>) {
+      // Await the params Promise
+  const { id } = await params
+  const jobId = Number(id)
     const job = await prisma.jobListing.findUnique({
          where: { id: jobId },
     })

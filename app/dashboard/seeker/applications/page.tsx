@@ -1,4 +1,5 @@
 // app/components/ViewJobs.tsx or similar
+import Trap from '@/app/seeker/trap'
 import { auth } from '@/auth'
 import { DataTableDemo } from '@/components/dataTable'
 import { prisma } from '@/prisma'
@@ -36,6 +37,8 @@ const ViewJobs = async () => {
      }
   })
 
+  const applicationting = await prisma.application.findMany()
+
   if (!applications) {
     return <div>Application not found.</div>
   }
@@ -43,6 +46,7 @@ const ViewJobs = async () => {
   return (
     <div>
      <DataTableDemo applications={applications} />
+     <Trap applicationting={applicationting} />
     </div>
   )
 }

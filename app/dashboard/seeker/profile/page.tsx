@@ -6,8 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { toast } from "sonner";
 import { saveUser } from './updateUser';
-import { v4 as uuid } from 'uuid';
-import { signIn } from "next-auth/react"; // 👈 must be imported
+import { signIn } from "next-auth/react"; 
 
 const initialState = {
   message: '',
@@ -32,8 +31,8 @@ const Profile = () => {
     // 🔄 Refresh session silently so updated name/email appears
     signIn("credentials", {
       redirect: false,
-      email: session?.user.email, // required to re-auth
-      password: session?.user.name || "", // ⚠️ only if you're storing it
+      email: session?.user?.email, // required to re-auth
+      password: session?.user?.name || "", // ⚠️ only if you're storing it
     });
   }
 }, [state.message]);
@@ -44,12 +43,12 @@ const Profile = () => {
         <Input
           type='text'
           name='name'
-          defaultValue={session?.user.name ?? ''}
+          defaultValue={session?.user?.name ?? ''}
         />
         <Input
           type='text'
           name='email'
-          defaultValue={session?.user.email ?? ''}
+          defaultValue={session?.user?.email ?? ''}
         />
         <Button type='submit' disabled={pending}>
           {pending ? 'submitting' : 'update'}

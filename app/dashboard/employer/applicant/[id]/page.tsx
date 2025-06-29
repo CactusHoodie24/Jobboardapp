@@ -1,25 +1,24 @@
-import { prisma } from '@/prisma'
-import React from 'react'
+import { prisma } from "@/prisma"
 
 interface PageProps {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>
 }
 
 const ApplicantDetail = async ({ params }: PageProps) => {
-  const applicationId = Number(params.id);
-  
+  // Await the params Promise
+  const { id } = await params
+  const applicationId = Number(id)
+
   const job = await prisma.application.findUnique({
-    where: { id: applicationId }
-  });
+    where: { id: applicationId },
+  })
 
   return (
-    <div key={job?.id}>
-      <h2>{job?.status}</h2>
-      <h2>{job?.applicantId}</h2>
+    <div>
+      <h2>Status: {job?.status}</h2>
+      <h2>Applicant ID: {job?.applicantId}</h2>
     </div>
-  );
-};
+  )
+}
 
-export default ApplicantDetail;
+export default ApplicantDetail

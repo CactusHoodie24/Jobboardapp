@@ -3,7 +3,7 @@
 import { signIn } from "@/auth"
 import { loginSchema } from "./zod"
 import { AuthError } from "next-auth"
-import { redirect } from "next/navigation"
+
 
 export type LoginState = {
   errors?: {
