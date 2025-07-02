@@ -9,7 +9,7 @@ import HomePage from "./home/page";
 
 export default function Home() {
   return (
-    <div className="mt-20 flex gap-2.5">
+    <div className=" ml-0 sm:mt-20 flex gap-2.5">
    <HomePage />
    </div>
   );

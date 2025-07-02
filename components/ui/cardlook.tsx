@@ -112,8 +112,8 @@ const handleFind = (e: React.ChangeEvent<HTMLInputElement>) => {
   return  (
     <div className="flex flex-col">
      <Input type="text" placeholder="search for a job" onChange={handleFind} value={search} className="rounded-3xl"/>
-  <div className="flex relative gap-12">
-    <Carousel className="w-full max-w-sm">
+  <div className="flex flex-col sm:flex sm:flex-row relative gap-12">
+    <Carousel className=" w-[300px] sm:w-full max-w-sm">
       <CarouselContent  className="-ml-1">
         {(search ? searchedJob : jobs).map((job) => (
           <CarouselItem key={job.id} onClick={() => handleSelect(job.id)} className="pl-1 w-full md:w-[500px] ">

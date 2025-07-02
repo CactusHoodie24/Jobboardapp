@@ -30,7 +30,7 @@ export default function AccordionDemo({ jobs, selectedJobId }: CarouselSpacingPr
     <Accordion
       type="single"
       collapsible
-      className="w-[50%] ml-16"
+      className=" w-[100%] m-0 sm:w-[60%] sm:ml-16"
       defaultValue="item-1"
     >
       <AccordionItem value="item-1">

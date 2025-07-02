@@ -16,7 +16,7 @@ export default function LoginForm() {
   useEffect(() => {
     if (state.success) {
       // Force a full page reload to ensure all client components get the updated session
-      window.location.href = "/dashboard"
+      window.location.href = "/dashboard/seeker/applications"
       // Alternative: Use router.push with a reload
       // router.push("/dashboard")
       // window.location.reload()

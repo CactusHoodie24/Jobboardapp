@@ -43,7 +43,7 @@ const Profile = () => {
         <Input
           type='text'
           name='name'
-          defaultValue={session?.user?.name ?? ''}
+          defaultValue={session?.user.name ?? ''}
         />
         <Input
           type='text'
