@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { Button } from "@/components/ui/button"
-import { useSession } from "next-auth/react"
+import { signOut, useSession } from "next-auth/react"
 import { useEffect, useState } from 'react'
 import { FaHamburger } from 'react-icons/fa'
 
@@ -25,10 +25,10 @@ export const Navigation = () => {
   }, [session?.user?.name])
 
   const nav = [
-    { name: 'home', href: '/' },
-    { name: 'jobs', href: '/jobs' },
-    { name: 'Register as Applicant', href: '/dashboard/seeker/registerApplicant' },
-    { name: 'View Applications', href: '/dashboard/seeker/applications' },
+    { name: 'Home', href: '/' },
+    { name: 'Jobs', href: '/jobs' },
+    //{ name: 'Applicant', href: '/dashboard/seeker/registerApplicant' },
+    { name: 'Applications', href: '/dashboard/seeker/applications' },
   ]
 
   const isLoading = status === 'loading'
@@ -49,7 +49,7 @@ export const Navigation = () => {
         {/* Mobile nav dropdown */}
         {isTouched && (
           <div className="sm:hidden flex justify-between mt-3.5 ml-0">
-            <ul className="flex flex-col gap-6">
+            <ul className="flex flex-col gap-6 relative">
               {nav.map((navItem, index) => (
                 <Link
                   key={index}
@@ -73,19 +73,22 @@ export const Navigation = () => {
             height={30}
             alt="jobs icon"
           />
-          <ul className="flex gap-6">
-            {nav.map((navItem, index) => (
-              <Link
-                key={index}
-                href={navItem.href}
-                className={clsx('text-black', {
-                  'border-b-2 border-black': pathname === navItem.href,
-                })}
-              >
-                {navItem.name}
-              </Link>
-            ))}
-          </ul>
+          <ul className="flex gap-6 relative">
+  {nav.map((navItem, index) => (
+    <li key={index} className="relative">
+      <Link
+        href={navItem.href}
+        className={clsx('text-black', {
+          'after:content-[""] after:absolute after:bottom-[-10px] after:left-1/2 after:w-[30px] after:h-[2px] after:bg-[#4dca4d] after:-translate-x-1/2':
+            pathname === navItem.href,
+        })}
+      >
+        {navItem.name}
+      </Link>
+    </li>
+  ))}
+</ul>
+
         </div>
       </div>
 
@@ -93,8 +96,8 @@ export const Navigation = () => {
       {!isLoading && (isLoggedIn ? (
         !isTouched && (
           <div className="flex items-center gap-3">
-            <Button variant="secondary" disabled>
-              Logged In
+            <Button  className="cursor-pointer" onClick={() => signOut()} variant="secondary" >
+              SignOut
             </Button>
             <span className="w-8 h-8 rounded-full bg-amber-300 p-2 flex items-center justify-center">
               <h1 className="text-sm font-bold">
