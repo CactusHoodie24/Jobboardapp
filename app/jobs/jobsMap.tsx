@@ -31,23 +31,23 @@ interface Application {
 }
 export default function jobsMaps({jobs}: Application) {
     return (
-        <>
+        <div className="flex flex-col gap-2.5">
         {jobs.map(job => (
  <Card key={job.id}>
   <CardHeader>
-    <CardTitle>{job.jobType}</CardTitle>
+    <CardTitle>{job.company.name}</CardTitle>
     <CardDescription>{job.description}</CardDescription>
-    <CardAction>{job.company.name}</CardAction>
+    <CardAction className="text-cyan-500">{job.company.name}</CardAction>
   </CardHeader>
   <CardContent>
-    <p>{job.salaryMax}</p>
+    <p>{job.location}</p>
   </CardContent>
   <CardFooter>
-    <p>{job.location}</p>
+    <p>{job.postedAt.toLocaleDateString()}</p>
   </CardFooter>
 </Card>
         ))}
        
-        </>
+        </div>
     )
 }

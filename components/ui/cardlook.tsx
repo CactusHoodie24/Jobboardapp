@@ -25,6 +25,7 @@ interface Job {
   location: string | null
   salaryMin: number | null
   salaryMax: number | null
+  postedAt: Date;
   company: {
     name: string
   }
@@ -193,9 +194,8 @@ export default function CarouselSpacing({ jobs }: CarouselSpacingProps) {
             <AlertDescription>
               <p>Please verify your information and try again.</p>
               <ul className="list-inside list-disc text-sm">
-                <li>You have registered as a user</li>
-                <li>Registered as an applicant</li>
-                <li>You are not the administrator of the system</li>
+                <li>Make sure you have completed your Profile</li>
+                <li>Click on your name icon on the top right corner</li>
               </ul>
             </AlertDescription>
             <Button variant='secondary' className="w-[100px]" onClick={() => setError(false)}>Dismiss</Button>

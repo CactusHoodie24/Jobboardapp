@@ -9,11 +9,14 @@ const Login = () => {
     <>
    <main className="bg-white h-screen flex justify-center items-center">
   
-  <div className="flex flex-col justify-center items-center h-[300px] bg-gray-100 rounded-md shadow-md w-[300px]">
-    <div className='mb-1'>
-     <SignIn />
-    </div>
+  <div className="flex flex-col justify-center items-center h-[300px] w-[300px]">
     <LoginForm />
+     <div className='mt-3'>
+      <div className='ml-10'>
+      <SignIn />
+      </div>
+     <Label>Sign using Google</Label>
+    </div>
   </div>
 </main>
 </>

@@ -38,7 +38,7 @@ console.log("Job types:", jobs.map(job => job.jobType))
     return (
       <>
         <Select onValueChange={handleChange}>
-  <SelectTrigger className="w-[200px] mb-4">
+  <SelectTrigger className="w-[200px] mb-4 mt-5">
     <SelectValue placeholder="Select category" />
   </SelectTrigger>
   <SelectContent>

@@ -4,12 +4,13 @@ import { getJobs } from '@/lib/getJobs';
 
 
 
+
  const HomePage = async () => {
     const jobs = await getJobs()
   return (
     <div>
-        <div className='flex'>
-<CarouselSpacing jobs={jobs} />
+        <div className='flex relative'>
+         <CarouselSpacing jobs={jobs} />
         </div>
     </div>
   )

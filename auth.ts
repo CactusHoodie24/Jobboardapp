@@ -5,6 +5,10 @@
   import Credentials from "next-auth/providers/credentials"
 import { loginSchema } from "./lib/zod"
 import { ZodError } from "zod"
+import bcrypt from "bcrypt"
+
+
+
 
   
   export const { handlers, auth, signIn, signOut } = NextAuth({
@@ -20,13 +24,13 @@ import { ZodError } from "zod"
    try {
     const { email, password } = await loginSchema.parseAsync(credentials)
 
-    const user = await prisma.user.findUnique({
-      where: { email },
-    })
+    const user = await prisma.user.findUnique({ where: { email } })
+          if (!user || !user.password) throw new Error("Invalid email or password")
 
-    if (!user || user.password !== password) {
-      throw new Error("Invalid email or password")
-    }
+
+          // Use bcrypt.compare to verify hashed password
+          const isValid = await bcrypt.compare(password, user.password )
+          if (!isValid) throw new Error("Invalid email or password")
 
     return user
   } catch (err) {
