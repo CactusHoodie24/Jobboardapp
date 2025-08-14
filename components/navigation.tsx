@@ -145,7 +145,6 @@ export const Navigation = () => {
 
               <CldUploadWidget
                 uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "ml_default"}
-                cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
                 options={{
                   multiple: false,
                   maxFiles: 1,
@@ -153,7 +152,6 @@ export const Navigation = () => {
                   maxFileSize: 10000000, // 10MB
                   sources: ["local"],
                   folder: "user-cvs",
-                  allowedFormats: ["pdf"],
                   clientAllowedFormats: ["pdf"],
                   showPoweredBy: false,
                   theme: "minimal",
@@ -184,7 +182,7 @@ export const Navigation = () => {
                       background: "#FFFFFF",
                     },
                   },
-                  zIndex: 9999,
+              
                 }}
                 onOpen={(widget) => {
                   console.log("✅ Cloudinary widget opened successfully", widget)
