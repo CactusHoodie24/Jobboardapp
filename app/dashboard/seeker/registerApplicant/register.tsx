@@ -45,7 +45,7 @@ const Apply: React.FC<ApplyProps> = ({ user }) => {
     e.preventDefault()
     const sendData = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/application/apply', {
+        const res = await fetch('/api/application/apply', {
         method: 'POST',
         headers: {'content-Type': 'application/json'},
         body: JSON.stringify({

@@ -42,7 +42,7 @@ const PostJob = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/company')
+        const res = await fetch('/api/company')
         const data = await res.json()
         setCompanies(data)
       } catch (err) {

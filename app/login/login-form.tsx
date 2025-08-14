@@ -51,7 +51,7 @@ useEffect(() => {
 
   const sendData = async () => {
     try {
-      const res = await axios.post('http://localhost:3000/api/register', formData)
+      const res = await axios.post('/api/register', formData)
 
       if (res.status === 201 || res.status === 200) {
 

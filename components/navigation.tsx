@@ -71,7 +71,7 @@ export const Navigation = () => {
   const sendCv = () => {
     try {
       const sendCVF = async () => {
-        const res = await axios.post('http://localhost:3000/api/application/apply', payload)
+        const res = await axios.post('/api/application/apply', payload)
         console.log(payload)
         if(res.status === 200) {
           setSuccessCV(true)

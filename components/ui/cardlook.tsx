@@ -55,7 +55,7 @@ export default function CarouselSpacing({ jobs }: CarouselSpacingProps) {
       }
 
       try {
-        const res = await fetch('http://localhost:3000/api/application/application', {
+        const res = await fetch('/api/application/application', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
