@@ -1,3 +1,4 @@
+// ...existing code...
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
@@ -5,6 +6,7 @@ import { Navigation } from "@/components/navigation";
 import ClientLayout from "@/components/ClientLayout";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "@/components/ui/sonner";
+import Footer from "@/components/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,15 +37,21 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable} antialiased w-[80%] m-0 ml-7 sm:w-4/5 sm:ml-25`}
-      >
+      <body className="antialiased">
+        {/* Constrain only the main app container so Footer can span full width */}
         <SessionProvider>
-          <Navigation />
-          {children}
-          <Toaster />
+          <div className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable} w-[80%] m-0 ml-7 sm:w-4/5 sm:ml-25`}>
+            <Navigation />
+            {children}
+          </div>
         </SessionProvider>
+
+        {/* Footer remains outside the constrained container and will stretch full width */}
+        <Footer />
+
+        <Toaster />
       </body>
     </html>
   );
 }
+// ...existing code...

@@ -102,7 +102,7 @@ export const Navigation = () => {
                 <Link
                   key={index}
                   href={navItem.href}
-                  className={clsx("text-black", {
+                  className={clsx("text-black font-bold", {
                     "text-cyan-500": pathname === navItem.href,
                   })}
                 >
@@ -115,7 +115,7 @@ export const Navigation = () => {
 
         {/* Desktop nav */}
         <div className="hidden sm:flex items-center gap-48">
-          <h1 className="text-cyan-500">JobboardApp</h1>
+          <h1 className="text-cyan-500 font-bold">JOBBOARD</h1>
           <ul className="flex gap-6 relative">
             {nav.map((navItem, index) => (
               <li key={index} className="relative">
@@ -316,11 +316,18 @@ export const Navigation = () => {
             </div>
           )
         ) : (
+          <div className="flex gap-2.5">
           <Link href="/login">
-            <Button className="mt-2.5" variant="secondary">
+            <Button className="mt-2.5 cursor-pointer bg-cyan-500">
               Login
             </Button>
           </Link>
+          <Link href="/login">
+            <Button className="mt-2.5 cursor-pointer hover:bg-cyan-500 hover:text-white" variant="secondary">
+              SignUp
+            </Button>
+          </Link>
+          </div>
         ))}
     </div>
   )

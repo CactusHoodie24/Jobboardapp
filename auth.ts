@@ -56,6 +56,8 @@ import bcrypt from "bcrypt"
       token.role = user.role;
     }
     return token;
+
+    
   },
   async session({ session, token }) {
     if (token && session.user) {
