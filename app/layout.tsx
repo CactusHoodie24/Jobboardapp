@@ -30,28 +30,27 @@ export const metadata: Metadata = {
   description: "Linking employers to seekers",
 };
 
+
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="antialiased">
-        {/* Constrain only the main app container so Footer can span full width */}
+    // Add "dark" class here to enable dark mode by default
+    <html lang="en" className="dark">
+      <body className="antialiased  text-white">
         <SessionProvider>
-          <div className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable} w-[80%] m-0 ml-7 sm:w-4/5 sm:ml-25`}>
+          <div className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable} w-[90%] sm:w-4/5 sm:ml-25`}>
             <Navigation />
             {children}
           </div>
         </SessionProvider>
-
-        {/* Footer remains outside the constrained container and will stretch full width */}
         <Footer />
-
         <Toaster />
       </body>
     </html>
   );
 }
+
 // ...existing code...

@@ -41,7 +41,7 @@ const Welcomer = () => {
             </div>
             <div>
               <h3 className="font-semibold text-base">{card.title}</h3>
-              <p className="text-sm text-gray-600">{card.description}</p>
+              <p className="text-sm text-white">{card.description}</p>
             </div>
           </div>
           <button className="bg-cyan-500 hover:bg-cyan-600 text-white py-2 rounded-md transition-colors">

@@ -43,6 +43,30 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+ @layer base {
+    h2 {
+      @apply text-2xl font-bold;
+    }
+    h3 {
+      @apply text-sm;
+    }
+  }
+
+  @layer utilities {
+    .mb-6-mad {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  @layer components {
+    .testimonial-card {
+      @apply flex justify-center gap-8 opacity-75;
+    }
+    .category-card {
+      @apply flex flex-col py-2.5 px-6 border rounded-sm;
+    }
+  }
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -118,5 +142,34 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Add this to your CSS file (e.g., globals.css or a separate stylesheet) */
+
+@media (max-width: 767px) {
+  .mobile-bg {
+    position: relative;
+    background-image: url('/image-from-rawpixel-id-14568900-png.png');
+    background-size: cover;
+    height: 400px;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 20px;
+  }
+
+  /* The overlay */
+  .mobile-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6); /* black with 60% opacity */
+    z-index: 0;
+  }
+
+  /* Make sure text sits above overlay */
+  .mobile-bg > * {
+    position: relative;
+    z-index: 1;
   }
 }

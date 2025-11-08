@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { signOut, useSession } from "next-auth/react"
 import { FormEvent, useEffect, useState } from "react"
-import { FaHamburger } from "react-icons/fa"
+import { FaBars, FaHamburger, FaTimes } from "react-icons/fa"
 import { toast } from "sonner"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -14,6 +14,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { CldUploadWidget } from "next-cloudinary"
 import type { ProfileInput } from "@/lib/zod"
 import axios from "axios"
+import { X } from "lucide-react"
 
 interface ValidationErrors {
   phonenumber?: string
@@ -91,38 +92,52 @@ export const Navigation = () => {
   return (
     <div className="flex justify-between">
       <div className="sm:flex sm:justify-between mt-4 w-full">
-        {/* Mobile hamburger menu */}
-        <FaHamburger onClick={() => setIsTouched((prev) => !prev)} className="sm:hidden flex mb-5 cursor-pointer" />
-
+      
+       {!isTouched ? (
+  <FaBars
+    onClick={() => setIsTouched(true)}
+    className="sm:hidden ml-3.5 flex mb-5 cursor-pointer text-2xl"
+  />
+) : (
+  <FaTimes
+    onClick={() => setIsTouched(false)}
+    className="sm:hidden ml-3.5 flex mb-5 cursor-pointer text-2xl"
+  />
+)}
+        
         {/* Mobile nav dropdown */}
-        {isTouched && (
-          <div className="sm:hidden flex justify-between mt-3.5 ml-0">
-            <ul className="flex flex-col gap-6 relative">
-              {nav.map((navItem, index) => (
-                <Link
-                  key={index}
-                  href={navItem.href}
-                  className={clsx("text-black font-bold", {
-                    "text-cyan-500": pathname === navItem.href,
-                  })}
-                >
-                  {navItem.name}
-                </Link>
-              ))}
-            </ul>
-          </div>
-        )}
+      {isTouched && (
+  <div className="sm:hidden absolute top-16 left-0 w-full bg-gray-900 bg-opacity-95 p-6 z-50 flex flex-col items-start">
+    <ul className="flex flex-col gap-6 w-full">
+      {nav.map((navItem, index) => (
+        <Link
+          key={index}
+          href={navItem.href}
+          onClick={() => setIsTouched(false)} // close menu when clicking
+          className={clsx(
+            "text-white font-semibold hover:text-cyan-400 transition-colors",
+            {
+              "text-cyan-500": pathname === navItem.href,
+            }
+          )}
+        >
+          {navItem.name}
+        </Link>
+      ))}
+    </ul>
+  </div>
+)}
 
         {/* Desktop nav */}
         <div className="hidden sm:flex items-center gap-48">
-          <h1 className="text-cyan-500 font-bold">JOBBOARD</h1>
+          <h1 className="text-cyan-500 font-bold">EASYSHEET</h1>
           <ul className="flex gap-6 relative">
             {nav.map((navItem, index) => (
               <li key={index} className="relative">
                 <Link
                   href={navItem.href}
-                  className={clsx("text-black", {
-                    'after:content-[""] after:absolute after:bottom-[-10px] after:left-1/2 after:w-[30px] after:h-[2px] after:bg-[#4dca4d] after:-translate-x-1/2':
+                  className={clsx("text-white", {
+                    'after:content-[""] after:absolute after:bottom-[-10px] after:left-1/2 after:w-[30px] after:h-[2px] after:bg-[#06B6D4] after:-translate-x-1/2':
                       pathname === navItem.href,
                   })}
                 >
@@ -317,11 +332,11 @@ export const Navigation = () => {
           )
         ) : (
           <div className="flex gap-2.5">
-          <Link href="/login">
+            <Link href="/">
             <Button className="mt-2.5 cursor-pointer bg-cyan-500">
               Login
             </Button>
-          </Link>
+            </Link>
           <Link href="/login">
             <Button className="mt-2.5 cursor-pointer hover:bg-cyan-500 hover:text-white" variant="secondary">
               SignUp
