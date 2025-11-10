@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label'
 const Login = () => {
   return (
     <>
-   <main className="bg-white h-screen flex justify-center items-center">
+   <main className="h-screen flex justify-center items-center">
   
   <div className="flex flex-col justify-center items-center h-[300px] w-[300px]">
     <LoginForm />

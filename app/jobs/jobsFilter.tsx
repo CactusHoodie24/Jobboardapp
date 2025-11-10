@@ -7,7 +7,7 @@ interface company {
     name: string
 }
 
-interface job {
+export interface job {
         id: number;
     location: string | null;
     title: string;
