@@ -1,9 +1,11 @@
 'use client'
 import Image from 'next/image'
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import FeaturedCategories from './featuredCategories'
 import { job } from '@/app/jobs/jobsFilter'
+import { EncryptedText } from './ui/encrypted-text'
+import { toast } from 'sonner'
 
 interface Application {
   jobs: job[]
@@ -12,6 +14,10 @@ interface Application {
 const Banner = ({jobs}: Application) => {
   const [searchquery, setSearchQuery] = useState('')
   const [filteredJobs, setFilteredJobs] =  useState<job[]>([])
+  const [mounted, setMounted] = useState(false)
+
+    useEffect(() => setMounted(true), [])
+
 
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const search = e.target.value 
@@ -24,7 +30,16 @@ const Banner = ({jobs}: Application) => {
     <>
     <div className='flex'>
     <div className='flex flex-col gap-8 relative mt-36 sm:m-0'>
-        <h1 className='text-3xl md:text-6xl font-bold text-center'>Find your dream Job</h1>
+        <h1 className='text-3xl md:text-6xl font-bold text-center'>
+          {mounted && (
+              <EncryptedText
+                text="Find your dream job with us"
+                encryptedClassName="text-neutral-500"
+                revealedClassName="dark:text-white text-black"
+                revealDelayMs={50}
+              />
+            )}
+        </h1>
         <div className='flex flex-col justify-center items-center md:flex-row gap-4'>
         <input value={searchquery} onChange={handleSearch} className='border border-gray-100 text-white rounded-3xl sm:rounded-sm md:w-[450px] w-[200px] sm:w-[300px] h-[45px]  px-5 ' placeholder='Search for jobs' />
         <FaSearch className='sm:hidden absolute top-30 left-48' />

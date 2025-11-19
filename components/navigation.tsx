@@ -52,6 +52,7 @@ export const Navigation = () => {
 
   const nav = [
     { name: "Home", href: "/" },
+    {name: "About", href: '/about-us'},
     { name: "Jobs", href: "/jobs" },
     { name: "Applications", href: "/dashboard/seeker/applications" },
   ]
@@ -130,7 +131,7 @@ export const Navigation = () => {
 
         {/* Desktop nav */}
         <div className="hidden sm:flex items-center gap-48">
-          <h1 className="text-cyan-500 font-bold">EASYSHEET</h1>
+          <h1 className="text-cyan-500 font-bold">JOBBOARD</h1>
           <ul className="flex gap-6 relative">
             {nav.map((navItem, index) => (
               <li key={index} className="relative">

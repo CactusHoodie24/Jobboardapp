@@ -6,6 +6,8 @@ import Welcomer from "@/components/welcomer";
 import { FaApple, FaFacebook, FaGoogle, FaLinkedin, FaMicrosoft, FaTwitter } from "react-icons/fa";
 import { prisma } from "@/prisma";
 import { getJobs } from "@/lib/getJobs";
+import TestimonialComponent from "@/components/testimonialComponent";
+import ContactSections03 from "@/components/creative-tim/blocks/contact-sections-03";
 
 
 export default async function Home() {
@@ -53,6 +55,8 @@ export default async function Home() {
     <FaMicrosoft size={40} />
   </div>
 </div>
+<TestimonialComponent />
+<ContactSections03 />
       </div>
     </div>
   );
