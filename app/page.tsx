@@ -8,6 +8,7 @@ import { prisma } from "@/prisma";
 import { getJobs } from "@/lib/getJobs";
 import TestimonialComponent from "@/components/testimonialComponent";
 import ContactSections03 from "@/components/creative-tim/blocks/contact-sections-03";
+import LogoCarousel from "@/components/ui/logo-carousel";
 
 
 export default async function Home() {
@@ -49,11 +50,7 @@ export default async function Home() {
 
         <div className="py-10 text-center">
   <h2 className="mb-6-mad">Trusted by Top Companies</h2>
-  <div className="testimonial-card">
-    <FaGoogle size={40} />
-    <FaApple size={40} />
-    <FaMicrosoft size={40} />
-  </div>
+  <LogoCarousel columnCount={6}/>
 </div>
 <TestimonialComponent />
 <ContactSections03 />
