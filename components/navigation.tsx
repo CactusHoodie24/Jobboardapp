@@ -89,6 +89,10 @@ export const Navigation = () => {
     }
   }
 
+    function go() {
+   router.push(`/login?state=register`);
+  }
+
 
   return (
     <div className="flex justify-between">
@@ -333,16 +337,14 @@ export const Navigation = () => {
           )
         ) : (
           <div className="flex gap-2.5">
-            <Link href="/">
+            <Link href='/login'>
             <Button className="mt-2.5 cursor-pointer bg-cyan-500">
               Login
             </Button>
             </Link>
-          <Link href="/login">
-            <Button className="mt-2.5 cursor-pointer hover:bg-cyan-500 hover:text-white" variant="secondary">
+            <Button onClick={go} className="mt-2.5 cursor-pointer hover:bg-cyan-500 hover:text-white" variant="secondary">
               SignUp
             </Button>
-          </Link>
           </div>
         ))}
     </div>

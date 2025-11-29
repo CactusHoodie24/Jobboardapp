@@ -41,7 +41,7 @@ export default async function RootLayout({
     <html lang="en" className="dark">
       <body className="antialiased  text-white">
         <SessionProvider>
-          <div className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable} w-[90%] sm:w-4/5 sm:ml-25`}>
+          <div className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable} max-w-6xl mx-auto px-4`}>
             <Navigation />
             {children}
           </div>

@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import Link from "next/link";
 
 interface company {
     name: string
@@ -34,6 +35,7 @@ export default function jobsMaps({jobs}: Application) {
         <div className="flex flex-col gap-2.5">
         {jobs.map(job => (
  <Card key={job.id}>
+  <Link href={`/jobs/${job.id}`}>
   <CardHeader>
     <CardTitle>{job.company.name}</CardTitle>
     <CardDescription>{job.description}</CardDescription>
@@ -45,6 +47,7 @@ export default function jobsMaps({jobs}: Application) {
   <CardFooter>
     <p>{job.postedAt.toLocaleDateString()}</p>
   </CardFooter>
+  </Link>
 </Card>
         ))}
        

@@ -14,7 +14,7 @@ import LogoCarousel from "@/components/ui/logo-carousel";
 export default async function Home() {
   const jobs = await getJobs()
   return (
-    <div className="flex flex-col mt-20 gap-10 w-full px-6">
+    <div className="flex flex-col mt-20 gap-32 px-6  sm:gap-10 w-full sm:px-6">
       {/* SECTION 1: Banner + Featured + Image Side by Side */}
       <div className="flex flex-col md:flex-row justify-between gap-10">
         {/* LEFT SIDE (Banner + Featured) */}
@@ -42,7 +42,7 @@ export default async function Home() {
 
       {/* SECTION 2: Recently Added + Welcomer (full width) */}
       <div className="flex flex-col gap-6">
-        <div className="bg-cyan-600 w-[350px] sm:w-full text-white text-center py-12 rounded-xl">
+        <div className="bg-cyan-600 w-full max-w-[350px] sm:max-w-[500px] lg:max-w-[650px]  mx-auto text-white text-center py-12 rounded-xl">
   <h2>Ready to Land Your Dream Job?</h2>
   <p className="mt-2">Join thousands of professionals on JobBoard today.</p>
   <button className="mt-4 bg-white text-cyan-600 font-semibold px-5 py-2 rounded">Get Started</button>
