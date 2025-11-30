@@ -2,6 +2,12 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { getJobs } from "@/lib/getJobs";
 
+
+interface JobPageProps {
+  // Define params as a Promise wrapping the actual object structure
+  params: Promise<{ id: string }>;
+}
+
 export async function generateStaticParams() {
   const jobs = await getJobs();
 
@@ -10,8 +16,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({params}) {
-    const job = await getJobById(params.id)
+export async function generateMetadata({ params }: JobPageProps) {
+     const awaitedParams = await params;
+  const job = await getJobById(awaitedParams.id);
 
     if (!job) {
     return { title: "Job not found" };
@@ -23,19 +30,20 @@ export async function generateMetadata({params}) {
     openGraph: {
       title: job.title,
       description: job.description,
-      url: `/jobs/${params.id}`,
+      url: `/jobs/${awaitedParams.id}`,
     },
   };
 }
 
 
-async function getJobById(id) {
+async function getJobById(id: string) {
   const jobs = await getJobs();
   return jobs.find((job) => job.id.toString() === id);
 }
 
-export default async function JobPage({ params }) {
-  const job = await getJobById(params.id);
+export default async function JobPage({ params }: JobPageProps) {
+  const awaitedParams = await params;
+  const job = await getJobById(awaitedParams.id);
 
   if (!job) {
     return <div>Job not found</div>;
