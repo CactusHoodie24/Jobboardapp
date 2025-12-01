@@ -1,16 +1,16 @@
 import React from 'react'
 import CarouselSpacing from '@/components/ui/cardlook';
 import { getJobs } from '@/lib/getJobs';
+import OnboardingWelcomeBlock from '@/components/creative-tim/blocks/onboarding-welcome-block';
 
 
 
 
  const HomePage = async () => {
-    const jobs = await getJobs()
   return (
     <div>
-        <div className='flex relative'>
-         <CarouselSpacing jobs={jobs} />
+        <div className='flex justify-center'>
+        <OnboardingWelcomeBlock />
         </div>
     </div>
   )

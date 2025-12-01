@@ -14,8 +14,8 @@ export default function SignIn() {
         })
       }}
     >
-      <Button type="submit" variant="secondary" size="icon" className="size-8 cursor-pointer">
-        <FaGoogle className="text-yellow-500"/>
+      <Button type="submit" size="icon" className="size-8 cursor-pointer px-2.5">
+        <FaGoogle className=""/>
       </Button>
     </form>
   )

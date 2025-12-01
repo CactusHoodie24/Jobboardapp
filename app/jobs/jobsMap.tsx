@@ -39,7 +39,6 @@ export default function jobsMaps({jobs}: Application) {
   <CardHeader>
     <CardTitle>{job.company.name}</CardTitle>
     <CardDescription>{job.description}</CardDescription>
-    <CardAction className="text-cyan-500">{job.company.name}</CardAction>
   </CardHeader>
   <CardContent>
     <p>{job.location}</p>

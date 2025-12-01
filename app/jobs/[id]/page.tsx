@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import CarouselSpacing from "@/components/ui/cardlook";
 import { getJobs } from "@/lib/getJobs";
 
 
@@ -52,9 +53,14 @@ export default async function JobPage({ params }: JobPageProps) {
   return (
     <div className="flex justify-center items-center h-screen">
     <Card className="p-10">
-      <h1>{job.company.name}</h1>
+      <h2>{job.company.name}</h2>
       <p>{job.description}</p>
-      <Button className="w-[300px]">Apply</Button>
+      <div className="flex gap-3.5 justify-between">
+      <h1>{job.location}</h1>
+      <h1>MKW {job.salaryMin} - {job.salaryMax}</h1>
+      <h1>{job.postedAt.toLocaleTimeString()}</h1>
+      </div>
+      <CarouselSpacing job={job} />
     </Card>
     </div>
   );

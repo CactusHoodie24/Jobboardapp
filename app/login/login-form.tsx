@@ -19,7 +19,7 @@ import axios from 'axios'
 import { signIn } from "next-auth/react";
 
 
-export default function LoginForm() {
+export default function LoginForm({register, setProgress}: {register: string, setProgress?: React.Dispatch<React.SetStateAction<number>>}) {
   const [state, action, pending] = useActionState<LoginState, FormData>(loginAction, {})
   const [details, setDetails] = useState({
     name: '',
@@ -56,6 +56,7 @@ useEffect(() => {
       if (res.status === 201 || res.status === 200) {
 
         setSuccess(true)
+        setProgress?.((prev) => Math.min(prev + 50, 100))
         // Auto-login after successful registration
      
               await signIn("credentials", {
@@ -101,7 +102,7 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 
   return (
     <div className="flex w-full max-w-sm flex-col gap-6">
-        <Tabs defaultValue="account">
+        <Tabs value={register || 'account'}>
       <TabsList>
           <TabsTrigger value="account">Login</TabsTrigger>
           <TabsTrigger value="register">Register</TabsTrigger>

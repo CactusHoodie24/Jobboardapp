@@ -86,15 +86,35 @@ model Authenticator {
 }
 
 model Company {
-  id         Int           @id @default(autoincrement())
-  name       String
-  industry   String?
-  location   String?
-  website    String?
-  createdAt  DateTime      @default(now())
-  jobs       JobListing[]
-  recruiters User[]        @relation("Recruiters")
+  id          Int           @id @default(autoincrement())
+  name        String
+  about       String?
+  industry    String?
+  website     String?
+  location    String?
+  logoUrl     String?
+  size        String?
+  foundedYear Int?
+  email       String?
+  phone       String?
+  country     String?
+  city        String?
+  address     String?
+  latitude    Float?
+  longitude   Float?
+  linkedin    String?
+  twitter     String?
+  facebook    String?
+  isVerified  Boolean       @default(false)
+  rating      Float?
+  tags        String[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime?      @updatedAt
+
+  jobs        JobListing[]
+  recruiters  User[]        @relation("Recruiters")
 }
+
 
 model JobListing {
   id            Int           @id @default(autoincrement())

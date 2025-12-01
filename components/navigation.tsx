@@ -55,6 +55,7 @@ export const Navigation = () => {
     {name: "About", href: '/about-us'},
     { name: "Jobs", href: "/jobs" },
     { name: "Applications", href: "/dashboard/seeker/applications" },
+    { name: "Companies", href: "/companies" },
   ]
 
   const isLoading = status === "loading"
