@@ -68,7 +68,7 @@ export interface GaugeProps extends Omit<SVGProps<SVGSVGElement>, "className"> {
 
 export function Gauge({
   value,
-  size = 100,
+  size = 50,
   gapPercent = 5,
   strokeWidth = 10,
   equal = false,

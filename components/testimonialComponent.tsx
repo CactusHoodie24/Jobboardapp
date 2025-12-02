@@ -3,60 +3,61 @@ import { TestimonialsColumn } from "@/components/testimonials-columns";
 
 const testimonials = [
   {
-    text: "This ERP revolutionized our operations, streamlining finance and inventory. The cloud-based platform keeps us productive, even remotely.",
+    text: "This job board helped me finally land a role after months of searching. The personalized recommendations and clean interface made applying so easy.",
     image: "https://randomuser.me/api/portraits/women/1.jpg",
     name: "Briana Patton",
-    role: "Operations Manager",
+    role: "Software Developer",
   },
   {
-    text: "Implementing this ERP was smooth and quick. The customizable, user-friendly interface made team training effortless.",
+    text: "I was able to discover companies I never knew existed. The platform’s filter system made it simple to find roles that matched my skill set perfectly.",
     image: "https://randomuser.me/api/portraits/men/2.jpg",
     name: "Bilal Ahmed",
     role: "IT Manager",
   },
   {
-    text: "The support team is exceptional, guiding us through setup and providing ongoing assistance, ensuring our satisfaction.",
+    text: "As a recruiter, posting jobs here has been a game changer. We received qualified applicants within hours, and the communication tools are fantastic.",
     image: "https://randomuser.me/api/portraits/women/3.jpg",
     name: "Saman Malik",
-    role: "Customer Support Lead",
+    role: "Talent Acquisition Lead",
   },
   {
-    text: "This ERP's seamless integration enhanced our business operations and efficiency. Highly recommend for its intuitive interface.",
+    text: "This app helped us hire faster than ever. The dashboard gives clear insights on candidates, making the entire process smooth and efficient.",
     image: "https://randomuser.me/api/portraits/men/4.jpg",
     name: "Omar Raza",
     role: "CEO",
   },
   {
-    text: "Its robust features and quick support have transformed our workflow, making us significantly more efficient.",
+    text: "I love how the app highlights skills and achievements clearly. It helped me showcase my profile better and secure interviews with top companies.",
     image: "https://randomuser.me/api/portraits/women/5.jpg",
     name: "Zainab Hussain",
     role: "Project Manager",
   },
   {
-    text: "The smooth implementation exceeded expectations. It streamlined processes, improving overall business performance.",
+    text: "Within a week of signing up, I got multiple interview invites. The platform is intuitive and makes job hunting far less stressful.",
     image: "https://randomuser.me/api/portraits/women/6.jpg",
     name: "Aliza Khan",
     role: "Business Analyst",
   },
   {
-    text: "Our business functions improved with a user-friendly design and positive customer feedback.",
+    text: "The job alerts feature is amazing. I never missed an opportunity, and was eventually hired for a role that matched me perfectly.",
     image: "https://randomuser.me/api/portraits/men/7.jpg",
     name: "Farhan Siddiqui",
-    role: "Marketing Director",
+    role: "Marketing Specialist",
   },
   {
-    text: "They delivered a solution that exceeded expectations, understanding our needs and enhancing our operations.",
+    text: "Posting vacancies is incredibly fast, and the app’s matching algorithm brought us candidates that fit our culture and requirements.",
     image: "https://randomuser.me/api/portraits/women/8.jpg",
     name: "Sana Sheikh",
-    role: "Sales Manager",
+    role: "HR Manager",
   },
   {
-    text: "Using this ERP, our online presence and conversions significantly improved, boosting business performance.",
+    text: "This platform improved our hiring workflow drastically. The quality of applicants and ease of communication helped us fill key positions quickly.",
     image: "https://randomuser.me/api/portraits/men/9.jpg",
     name: "Hassan Ali",
     role: "E-commerce Manager",
   },
 ];
+
 
 const firstColumn = testimonials.slice(0, 3);
 const secondColumn = testimonials.slice(3, 6);

@@ -1,5 +1,5 @@
-"use client"
-
+"use client";
+import React from "react";
 import {
   Dribbble,
   Facebook,
@@ -8,30 +8,50 @@ import {
   Phone,
   Ticket,
   Twitter,
-} from "lucide-react"
+} from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
 
 const DATA = [
-  {
-    icon: Phone,
-    info: "+1(424) 535 3523",
-  },
-  {
-    icon: Mail,
-    info: "hello@mail.com",
-  },
-  {
-    icon: Ticket,
-    info: "Open Support Ticket",
-  },
-]
+  { icon: Phone, info: "+1(424) 535 3523" },
+  { icon: Mail, info: "hello@mail.com" },
+  { icon: Ticket, info: "Open Support Ticket" },
+];
 
 export default function ContactSections03() {
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    const toastId = toast.loading("Sending email...");
+
+    const formData = {
+      firstName: e.target.firstName.value,
+      lastName: e.target.lastName.value,
+      email: e.target.email.value,
+      message: e.target.message.value,
+    };
+
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    toast.dismiss(toastId);
+
+    if (res.ok) {
+      toast.success("Message sent!");
+      e.target.reset();
+    } else {
+      toast.error("Failed to send message.");
+    }
+  };
+
   return (
     <section className="py-16">
       <div className="container mx-auto">
@@ -41,48 +61,72 @@ export default function ContactSections03() {
             Any questions or remarks? Just write us a message!
           </p>
         </div>
+
         <Card className="grid grid-cols-1 gap-10 rounded-2xl p-8 shadow-xl lg:grid-cols-2 lg:p-10">
-          <form action="#" className="space-y-6">
+          {/* ⭐ FORM FIXED */}
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
               <div className="space-y-2">
-                <Label htmlFor="first-name" className="text-base">
+                <Label htmlFor="firstName" className="text-base">
                   First Name
                 </Label>
-                <Input id="first-name" placeholder="John" className="h-11" />
+                <Input
+                  id="firstName"
+                  name="firstName"
+                  placeholder="John"
+                  className="h-11"
+                />
               </div>
+
               <div className="space-y-2">
-                <Label htmlFor="last-name" className="text-base">
+                <Label htmlFor="lastName" className="text-base">
                   Last Name
                 </Label>
-                <Input id="last-name" placeholder="Doe" className="h-11" />
+                <Input
+                  id="lastName"
+                  name="lastName"
+                  placeholder="Doe"
+                  className="h-11"
+                />
               </div>
             </div>
+
             <div className="space-y-2">
               <Label htmlFor="email" className="text-base">
                 Email Address
               </Label>
               <Input
                 id="email"
+                name="email"
                 type="email"
                 placeholder="someone@example.com"
                 className="h-11"
               />
             </div>
+
             <div className="space-y-2">
               <Label htmlFor="message" className="text-base">
                 Message
               </Label>
               <Textarea
                 id="message"
+                name="message"
                 placeholder="Something about your request."
                 rows={5}
                 className="resize-none"
               />
             </div>
-            <Button className="w-full sm:w-auto sm:min-w-[150px]" size="lg">
+
+            <Button
+              type="submit"
+              className="w-full sm:w-auto sm:min-w-[150px]"
+              size="lg"
+            >
               Send Message
             </Button>
           </form>
+
+          {/* Right Side UI untouched */}
           <div className="flex flex-col justify-between rounded-xl bg-gradient-to-br from-gray-900 to-black p-8 lg:p-12">
             <div>
               <h3 className="mb-4 text-2xl font-bold text-white">
@@ -103,29 +147,18 @@ export default function ContactSections03() {
                 ))}
               </div>
             </div>
+
             <div className="mt-12 flex items-center gap-6">
-              <a
-                href="#"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-gray-300 transition-all hover:bg-white/20 hover:text-white"
-              >
+              <a className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-gray-300 transition-all hover:bg-white/20 hover:text-white">
                 <Twitter className="h-5 w-5" />
               </a>
-              <a
-                href="#"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-gray-300 transition-all hover:bg-white/20 hover:text-white"
-              >
+              <a className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-gray-300 transition-all hover:bg-white/20 hover:text-white">
                 <Linkedin className="h-5 w-5" />
               </a>
-              <a
-                href="#"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-gray-300 transition-all hover:bg-white/20 hover:text-white"
-              >
+              <a className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-gray-300 transition-all hover:bg-white/20 hover:text-white">
                 <Dribbble className="h-5 w-5" />
               </a>
-              <a
-                href="#"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-gray-300 transition-all hover:bg-white/20 hover:text-white"
-              >
+              <a className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-gray-300 transition-all hover:bg-white/20 hover:text-white">
                 <Facebook className="h-5 w-5" />
               </a>
             </div>
@@ -133,5 +166,5 @@ export default function ContactSections03() {
         </Card>
       </div>
     </section>
-  )
+  );
 }

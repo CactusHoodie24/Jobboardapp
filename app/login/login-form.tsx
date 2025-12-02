@@ -101,7 +101,7 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 
 
   return (
-    <div className="flex w-full max-w-sm flex-col gap-6">
+    <div className="flex w-full lg:w-[350px] max-w-sm flex-col gap-6">
         <Tabs value={register || 'account'}>
       <TabsList>
           <TabsTrigger value="account">Login</TabsTrigger>
@@ -164,7 +164,7 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
               </div>
             </CardContent>
             <CardFooter>
-              <Button disabled={isPending} type="submit">{isPending ? 'Submiting' : 'Submit'}</Button>
+              <Button className='mt-5' disabled={isPending} type="submit">{isPending ? 'Submiting' : 'Submit'}</Button>
               {success && <h4>Success</h4>}
             </CardFooter>
             </form>
