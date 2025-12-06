@@ -14,7 +14,7 @@ export default function Renderer({companies}: PropsApps) {
       setSelectedId(id)
       }
   return (
-      <div className='flex py-6'>
+      <div className='flex flex-col-reverse sm:flex-row py-6'>
         <Accordion03 companies={companies} selectedId={selectedId}/>
         <Companylist handleClick={handleClick} companies={companies} />
     </div>

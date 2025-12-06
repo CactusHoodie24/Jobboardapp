@@ -37,10 +37,34 @@ export interface PropsApps {
 
 
 export default function Companylist({companies, handleClick}: PropsApps) {
+  const [selectedCompanyId, setSelectedCompanyId] = useState<string>('')
+
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const id = Number(e.target.value)
+    setSelectedCompanyId(e.target.value)
+    handleClick?.(id)
+  }
+
   return (
-    <div>
+    <div className='mx-auto'>
     <h1 className='my-3.5'>Select a company to view information</h1>
-    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+    
+    {/* Mobile dropdown (< 640px) */}
+    <select 
+      value={selectedCompanyId}
+      onChange={handleSelectChange}
+      className='sm:hidden w-full p-2 border rounded mb-4 bg-background text-foreground'
+    >
+      <option value="">-- Select a company --</option>
+      {companies.map(company => (
+        <option key={company.id} value={company.id}>
+          {company.name}
+        </option>
+      ))}
+    </select>
+
+    {/* Desktop grid (>= 640px) */}
+    <div className='hidden sm:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
      {companies.map(company => (
   <div key={company.id} className="min-w-0">
     <Button
@@ -53,11 +77,6 @@ export default function Companylist({companies, handleClick}: PropsApps) {
   </div>
 ))}
     </div>
- {/* <AwardCard
-  title="Top Innovator 2025"
-  description="Awarded for outstanding contribution to tech innovation."
-  image="https://picsum.photos/400/250"
-/> */}
     </div>
   )
 }

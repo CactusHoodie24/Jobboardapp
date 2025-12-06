@@ -75,7 +75,7 @@ export default function CarouselSpacing({ job }: { job: Job } ) {
 
 
   return (
-    <Button onClick={() => handleSend(job.id)} className="w-[400px]">
+    <Button onClick={() => handleSend(job.id)} className="w-full sm:w-auto sm:min-w-[200px] px-6 py-2 sm:py-3 text-sm sm:text-base md:text-lg">
       Apply
     </Button>
   )

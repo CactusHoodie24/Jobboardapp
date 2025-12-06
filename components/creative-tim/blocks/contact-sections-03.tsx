@@ -18,8 +18,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 
 const DATA = [
-  { icon: Phone, info: "+1(424) 535 3523" },
-  { icon: Mail, info: "hello@mail.com" },
+  { icon: Phone, info: "+265 994257534" },
+  { icon: Mail, info: "preciousphimba@gmail.com" },
   { icon: Ticket, info: "Open Support Ticket" },
 ];
 
