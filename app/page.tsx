@@ -10,6 +10,7 @@ import TestimonialComponent from "@/components/testimonialComponent";
 import ContactSections03 from "@/components/creative-tim/blocks/contact-sections-03";
 import LogoCarousel from "@/components/ui/logo-carousel";
 import Link from "next/link";
+import { StickyBanner } from "@/components/ui/sticky-banner";
 
 
 export default async function Home() {
@@ -21,6 +22,7 @@ export default async function Home() {
         {/* LEFT SIDE (Banner + Featured) */}
         <div className="flex flex-col gap-4 w-full md:w-2/3">
           {/* Banner */}
+          <StickyBanner />
           <div className="flex flex-col gap-2.5 mobile-bg">
             <Banner jobs={jobs} />
           </div>
