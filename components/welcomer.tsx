@@ -49,8 +49,8 @@ const Welcomer = ({jobs, searchquery, filteredJobs}: Application) => {
       <div className="flex flex-col rounded-lg p-3 gap-2 shadow-sm hover:shadow-md transition-shadow">
         
         <div className="flex items-center gap-4">
-          <div className="bg-cyan-500 w-10 h-9 rounded-full flex items-center justify-center text-lg">
-            {job.company.name.slice(0, 1).toUpperCase() + job.company.name.slice(1,2)}
+          <div className="bg-signal text-signal-foreground w-10 h-9 rounded-full flex items-center justify-center text-lg font-semibold uppercase shrink-0">
+            {job.company.name.trim().charAt(0)}
           </div>
           <div>
             <h3 className="font-semibold text-left">
@@ -82,7 +82,7 @@ const Welcomer = ({jobs, searchquery, filteredJobs}: Application) => {
             <p className="mt-2 text-white">{job.description}</p>
           </MorphingDialogDescription>
 
-          <button className="bg-cyan-500 hover:bg-cyan-600 text-white py-2 rounded-md mt-4">
+          <button className="bg-signal hover:bg-signal-hover text-signal-foreground font-medium py-2 rounded-md mt-4 transition-colors">
             Apply Now
           </button>
         </div>

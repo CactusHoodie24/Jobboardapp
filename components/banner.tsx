@@ -41,9 +41,9 @@ const Banner = ({jobs}: Application) => {
             )}
         </h1>
         <div className='flex flex-col justify-center items-center md:flex-row gap-4'>
-        <input value={searchquery} onChange={handleSearch} className='border border-gray-100 text-white rounded-3xl sm:rounded-sm md:w-[450px] w-[200px] sm:w-[300px] h-[45px]  px-5 ' placeholder='Search for jobs' />
+        <input value={searchquery} onChange={handleSearch} className='border border-border bg-card text-foreground rounded-3xl sm:rounded-sm md:w-[450px] w-[200px] sm:w-[300px] h-[45px]  px-5 placeholder:text-muted-foreground' placeholder='Search for jobs' />
         <FaSearch className='sm:hidden absolute top-30 left-48' />
-        <button className='hidden sm:block w-[100px] px-2.5 md:px-8 py-2.5 text-white bg-cyan-500 border rounded-sm cursor-pointer'>Search</button>
+        <button className='hidden sm:block w-[100px] px-2.5 md:px-8 py-2.5 text-signal-foreground bg-signal hover:bg-signal-hover border-0 rounded-sm cursor-pointer transition-colors font-medium'>Search</button>
     </div>
     </div>
     </div>

@@ -121,9 +121,9 @@ export const Navigation = () => {
           href={navItem.href}
           onClick={() => setIsTouched(false)} // close menu when clicking
           className={clsx(
-            "text-white font-semibold hover:text-cyan-400 transition-colors",
+            "text-white font-semibold hover:text-signal transition-colors",
             {
-              "text-cyan-500": pathname === navItem.href,
+              "text-signal": pathname === navItem.href,
             }
           )}
         >
@@ -136,7 +136,7 @@ export const Navigation = () => {
 
         {/* Desktop nav */}
         <div className="hidden sm:flex items-center gap-48">
-          <h1 className="text-cyan-500 font-bold">JOBBOARD</h1>
+          <h1 className="text-signal font-bold">JOBBOARD</h1>
           <ul className="flex gap-6 relative">
             {nav.map((navItem, index) => (
               <li key={index} className="relative">
@@ -339,11 +339,11 @@ export const Navigation = () => {
         ) : (
           <div className="flex gap-2.5">
             <Link href='/login'>
-            <Button className="mt-2.5 cursor-pointer bg-cyan-500">
+            <Button className="mt-2.5 cursor-pointer bg-signal text-signal-foreground hover:bg-signal-hover font-medium">
               Login
             </Button>
             </Link>
-            <Button onClick={go} className="mt-2.5 cursor-pointer hover:bg-cyan-500 hover:text-white" variant="secondary">
+            <Button onClick={go} className="mt-2.5 cursor-pointer hover:bg-signal hover:text-signal-foreground" variant="secondary">
               SignUp
             </Button>
           </div>

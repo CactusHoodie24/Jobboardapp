@@ -14,7 +14,7 @@ async function getApplicants() {
 const ViewApplicant = async () => {
     const details = await getApplicants();
   return (
-    <div>
+    <div> 
      {details.map(detail => (
         <div key={detail.id} className='flex'>
           <h2>{detail.id}</h2>  
