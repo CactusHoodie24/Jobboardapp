@@ -2,7 +2,9 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(req: NextRequest) {
-  const token = req.cookies.get("next-auth.session-token");
+  const token =
+    req.cookies.get("authjs.session-token") ||
+    req.cookies.get("__Secure-authjs.session-token");
   const visited = req.cookies.get("visited")?.value;
 
   const res = NextResponse.next();
@@ -25,7 +27,7 @@ export function middleware(req: NextRequest) {
   return res;
 }
 
-// Apply middleware only to dashboard (and optionally onboarding pages)
+// Apply middleware to /dashboard and every route nested under it
 export const config = {
-  matcher: ["/dashboard"], // you can expand with "/welcome" if redirecting first-time visitors
+  matcher: ["/dashboard/:path*"],
 };

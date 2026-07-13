@@ -1,8 +1,18 @@
 'use server';
 
 import { prisma } from '@/prisma';
+import { auth } from '@/auth';
 
 export async function CreatePost(prevState: any, formData: FormData) {
+  const session = await auth();
+
+  if (!session?.user) {
+    return { error: 'You must be signed in to post a job.', message: '' };
+  }
+  if (session.user.role !== 'RECRUITER' && session.user.role !== 'ADMIN') {
+    return { error: 'Only employer accounts can post jobs.', message: '' };
+  }
+
   const title = formData.get('title') as string;
   const description = formData.get('description') as string;
   const location = formData.get('location') as string;

@@ -1,7 +1,5 @@
 import React from 'react'
-import { Accordion03 } from './form'
 import { prisma } from '@/prisma'
-import Companylist from './companylist'
 import Renderer from './renderer'
 
 async function getCompanies() {

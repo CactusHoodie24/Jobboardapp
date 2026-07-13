@@ -11,7 +11,21 @@ interface Application {
   filteredJobs: job[]
 }
 
-export default function FeaturedCategories ({jobs, searchquery, filteredJobs}: Application) {   
+const CATEGORY_KEYWORDS: Record<string, string[]> = {
+  Tech: ['developer', 'engineer', 'software', 'it ', 'programmer', 'data', 'devops', 'web'],
+  Design: ['design', 'ux', 'ui', 'graphic', 'creative'],
+  Marketing: ['marketing', 'sales', 'seo', 'social media', 'brand'],
+}
+
+function countJobsInCategory(jobs: job[], category: string) {
+  const keywords = CATEGORY_KEYWORDS[category] ?? []
+  return jobs.filter((j) => {
+    const haystack = `${j.title} ${j.description}`.toLowerCase()
+    return keywords.some((k) => haystack.includes(k))
+  }).length
+}
+
+export default function FeaturedCategories ({jobs, searchquery, filteredJobs}: Application) {
   return (
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <h2 className="mb-3 ml-7 sm:ml-0 sm:mb-4 md:mb-5 font-bold text-base sm:text-lg md:text-xl lg:text-2xl">Featured Categories</h2>
@@ -19,17 +33,17 @@ export default function FeaturedCategories ({jobs, searchquery, filteredJobs}: A
               <div className="category-card">
                 <Laptop className="text-signal w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 ml-1 sm:ml-2 md:ml-2.5" />
                 <h1 className="text-sm sm:text-base md:text-lg ml-1 sm:ml-1.5 font-semibold">Tech</h1>
-                <h3 className="text-xs sm:text-sm md:text-base">1200 jobs</h3>
+                <h3 className="text-xs sm:text-sm md:text-base">{countJobsInCategory(jobs, 'Tech')} jobs</h3>
               </div>
               <div className="category-card">
                 <Pencil className="text-signal w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 ml-1 sm:ml-2 md:ml-2.5" />
                 <h1 className="text-sm sm:text-base md:text-lg ml-1 sm:ml-1.5 font-bold">Design</h1>
-                <h3 className="text-xs sm:text-sm md:text-base">980 jobs</h3>
+                <h3 className="text-xs sm:text-sm md:text-base">{countJobsInCategory(jobs, 'Design')} jobs</h3>
               </div>
               <div className="category-card">
                 <Megaphone className="text-signal w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 ml-1 sm:ml-2 md:ml-2.5" />
                 <h1 className="text-sm sm:text-base md:text-lg ml-1 sm:ml-1.5 font-bold">Marketing</h1>
-                <h3 className="text-xs sm:text-sm md:text-base">500 jobs</h3>
+                <h3 className="text-xs sm:text-sm md:text-base">{countJobsInCategory(jobs, 'Marketing')} jobs</h3>
               </div>
             </div>    
           <div className="hidden sm:block">

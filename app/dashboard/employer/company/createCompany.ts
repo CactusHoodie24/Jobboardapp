@@ -1,8 +1,18 @@
 'use server';
 
 import { prisma } from '@/prisma';
+import { auth } from '@/auth';
 
 export async function CreateCompany(prevState: any, formData: FormData) {
+  const session = await auth();
+
+  if (!session?.user) {
+    return { error: 'You must be signed in to create a company profile.', message: '' };
+  }
+  if (session.user.role !== 'RECRUITER' && session.user.role !== 'ADMIN') {
+    return { error: 'Only employer accounts can create a company profile.', message: '' };
+  }
+
   const name = formData.get('name');
   const industry = formData.get('industry');
   const location = formData.get('location');
