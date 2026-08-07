@@ -1,4 +1,4 @@
-import Joblist from './jobsFilter'
+import Joblist from '@/app/jobs/jobsFilter'
 import { getJobs } from '@/lib/getJobs'
 
 export default async function Jobs() {
