@@ -11,10 +11,20 @@ interface Application {
   jobs: job[]
 }
 
-const Banner = ({jobs}: Application) => {
+const Banner = () => {
   const [searchquery, setSearchQuery] = useState('')
   const [filteredJobs, setFilteredJobs] =  useState<job[]>([])
   const [mounted, setMounted] = useState(false)
+  const [jobs, setJobs] = useState<job[]>([])
+
+   useEffect(() => {
+    const fetchJobs = async () => {
+      const res = await fetch('/api/jobs');
+      const data = await res.json()
+      setJobs(data)
+    }
+    fetchJobs()
+   }, [])
 
     useEffect(() => setMounted(true), [])
 

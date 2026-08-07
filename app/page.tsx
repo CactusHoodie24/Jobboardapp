@@ -14,7 +14,6 @@ import { StickyBanner } from "@/components/ui/sticky-banner";
 
 
 export default async function Home() {
-  const jobs = await getJobs()
   return (
     <div className="flex flex-col mt-20 gap-32 px-6  sm:gap-10 w-full sm:px-6">
       {/* SECTION 1: Banner + Featured + Image Side by Side */}
@@ -24,7 +23,7 @@ export default async function Home() {
           {/* Banner */}
           <StickyBanner />
           <div className="flex flex-col gap-2.5 mobile-bg">
-            <Banner jobs={jobs} />
+            <Banner />
           </div>
 
           {/* Featured Categories */}
