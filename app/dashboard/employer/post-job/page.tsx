@@ -55,7 +55,7 @@ const PostJob = () => {
 
   return (
     <div>
-        <Card className="w-[350px] ml-72">
+        <Card className="w-87.5 ml-72">
       <CardHeader>
         <CardTitle>Create a Job listing</CardTitle>
         <CardDescription>Fill in the details of that Job.</CardDescription>

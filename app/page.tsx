@@ -1,11 +1,5 @@
 import Image from "next/image";
-import { Clock, Laptop, Megaphone, Pencil } from "lucide-react";
 import Banner from "@/components/banner";
-import RecentlyAdded from "@/components/recentlyAdded";
-import Welcomer from "@/components/welcomer";
-import { FaApple, FaFacebook, FaGoogle, FaLinkedin, FaMicrosoft, FaTwitter } from "react-icons/fa";
-import { prisma } from "@/prisma";
-import { getJobs } from "@/lib/getJobs";
 import TestimonialComponent from "@/components/testimonialComponent";
 import ContactSections03 from "@/components/creative-tim/blocks/contact-sections-03";
 import LogoCarousel from "@/components/ui/logo-carousel";
@@ -13,7 +7,7 @@ import Link from "next/link";
 import { StickyBanner } from "@/components/ui/sticky-banner";
 
 
-export default async function Home() {
+export default function Home() {
   return (
     <div className="flex flex-col mt-20 gap-32 px-6  sm:gap-10 w-full sm:px-6">
       {/* SECTION 1: Banner + Featured + Image Side by Side */}
@@ -31,7 +25,7 @@ export default async function Home() {
         </div>
     
         {/* RIGHT SIDE (Image beside banner & featured only) */}
-        <div className="relative w-full h-[400px] md:h-[500px] rounded-lg overflow-hidden hidden md:block">
+        <div className="relative w-full h-100 md:h-125 rounded-lg overflow-hidden hidden md:block">
           <Image
             src="/image-from-rawpixel-id-14568900-png.png"
             alt="Job illustration"
@@ -44,7 +38,7 @@ export default async function Home() {
 
       {/* SECTION 2: Recently Added + Welcomer (full width) */}
       <div className="flex flex-col mt-12 sm:mt-0 gap-6">
-        <div className="bg-signal w-full max-w-[350px] sm:max-w-[500px] lg:max-w-[650px]  mx-auto text-signal-foreground text-center py-12 rounded-xl">
+        <div className="bg-signal w-full max-w-87.5 sm:max-w-125 lg:max-w-162.5  mx-auto text-signal-foreground text-center py-12 rounded-xl">
   <h2>Whether You're Hiring or Job Hunting, We’ve Got You Covered</h2>
 <p className="mt-2 px-5">Discover opportunities, connect with talent, and grow your career or company on JobBoard.</p>
   <Link href='/login'>

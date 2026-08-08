@@ -19,7 +19,8 @@ const CATEGORY_KEYWORDS: Record<string, string[]> = {
 
 function countJobsInCategory(jobs: job[], category: string) {
   const keywords = CATEGORY_KEYWORDS[category] ?? []
-  return jobs.filter((j) => {
+  const jobList = Array.isArray(jobs) ? jobs : []
+  return jobList.filter((j) => {
     const haystack = `${j.title} ${j.description}`.toLowerCase()
     return keywords.some((k) => haystack.includes(k))
   }).length
